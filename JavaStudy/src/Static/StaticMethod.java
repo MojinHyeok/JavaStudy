@@ -10,17 +10,17 @@ public class StaticMethod {
 	}
 	
 	public static void printName() {
-//		System.out.println(name1);//ºÒ°¡´ÉÇÑ È£Ãâ
+//		System.out.println(name1);//ë¶ˆê°€ëŠ¥í•œ í˜¸ì¶œ
 		System.out.println(name2);
 	}
 }
 /**
- * Math ÇÔ¼ö¸¦ º°µµÀÇ »ý¼º¾øÀÌ »ç¿ë°¡´ÉÇÑ ÀÌÀ¯´Â MathÀÇ ÇÔ¼öµéÀº staticÀ¸·Î ¼±¾ðµÇ¾î
- * º°µµ·Î ¼±¾ð(ÃÊ±âÈ­)¾øÀÌ »ç¿ë°¡´ÉÇÕ´Ï´Ù.
- * ÇÏÁö¸¸ static ¸Þ¼Òµå¿¡¼­´Â static ¼±¾ðµÇÁö ¾Ê´Â º¯¼ö¿¡´Â Á¢±ÙÀÌ ºÒ°¡´ÉÇÑµ¥,
- * ¸Þ¸ð¸® ÇÒ´çÀ¸·Î »ý°¢ÇØº¸¸é °¡´ÉÇÕ´Ï´Ù. StaticMethod¿¡¼­ printName1À» ÅëÇØ
- * name1À» Á¢±ÙÇÏ·Á°íÇÏ´Âµ¥ name1Àº new ¿¬»êÀ» ÅëÇØ °´Ã¼°¡ »ý¼ºµÈ ÀÌÈÄ¿¡ Á¢±ÙÇÏ°Ô µË´Ï´Ù.
- * ÇÏÁö¸¸ static¸Þ¼Òµå´Â °´Ã¼ÀÇ »ý¼º¾øÀÌ Á¢±ÙÀÌ °¡´ÉÇÑ ÇÔ¼öÀÌ¹Ç·Î, ÇÒ´çµÇÁö ¾ÊÀº ¸Þ¸ð¸® ¿µ¿ª¿¡
- * Á¢±ÙÇÏ¹Ç·Î ¹®Á¦°¡ ¹ß»ýÇÏ°ÔµË´Ï´Ù.
- * ±×¸®ÇÏ¿© static¸Þ¼Òµå¿¡¼­ Á¢±ÙÇÏ±â À§ÇÑ º¯¼ö´Â ¹Ýµå½Ã static º¯¼ö·Î ¼±¾ðµÇ¾î¾ßÇÕ´Ï´Ù.
+ * Math í•¨ìˆ˜ë¥¼ ë³„ë„ì˜ ìƒì„±ì—†ì´ ì‚¬ìš©ê°€ëŠ¥í•œ ì´ìœ ëŠ” Mathì˜ í•¨ìˆ˜ë“¤ì€ staticìœ¼ë¡œ ì„ ì–¸ë˜ì–´
+ * ë³„ë„ë¡œ ì„ ì–¸(ì´ˆê¸°í™”)ì—†ì´ ì‚¬ìš©ê°€ëŠ¥í•©ë‹ˆë‹¤.
+ * í•˜ì§€ë§Œ static ë©”ì†Œë“œì—ì„œëŠ” static ì„ ì–¸ë˜ì§€ ì•ŠëŠ” ë³€ìˆ˜ì—ëŠ” ì ‘ê·¼ì´ ë¶ˆê°€ëŠ¥í•œë°,
+ * ë©”ëª¨ë¦¬ í• ë‹¹ìœ¼ë¡œ ìƒê°í•´ë³´ë©´ ê°€ëŠ¥í•©ë‹ˆë‹¤. StaticMethodì—ì„œ printName1ì„ í†µí•´
+ * name1ì„ ì ‘ê·¼í•˜ë ¤ê³ í•˜ëŠ”ë° name1ì€ new ì—°ì‚°ì„ í†µí•´ ê°ì²´ê°€ ìƒì„±ëœ ì´í›„ì— ì ‘ê·¼í•˜ê²Œ ë©ë‹ˆë‹¤.
+ * í•˜ì§€ë§Œ staticë©”ì†Œë“œëŠ” ê°ì²´ì˜ ìƒì„±ì—†ì´ ì ‘ê·¼ì´ ê°€ëŠ¥í•œ í•¨ìˆ˜ì´ë¯€ë¡œ, í• ë‹¹ë˜ì§€ ì•Šì€ ë©”ëª¨ë¦¬ ì˜ì—­ì—
+ * ì ‘ê·¼í•˜ë¯€ë¡œ ë¬¸ì œê°€ ë°œìƒí•˜ê²Œë©ë‹ˆë‹¤.
+ * ê·¸ë¦¬í•˜ì—¬ staticë©”ì†Œë“œì—ì„œ ì ‘ê·¼í•˜ê¸° ìœ„í•œ ë³€ìˆ˜ëŠ” ë°˜ë“œì‹œ static ë³€ìˆ˜ë¡œ ì„ ì–¸ë˜ì–´ì•¼í•©ë‹ˆë‹¤.
  */
