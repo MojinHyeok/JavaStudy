@@ -3,6 +3,7 @@ package TDD.BowlingGame;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class GameTest {
@@ -53,4 +54,15 @@ public class GameTest {
 		rollMany(1,20);
 		assertThat(game.getScore()).isEqualTo(20);
 	}
+	
+	@Test
+	public void oneSpare() {
+	    game.roll(5);
+	    game.roll(5); // spare
+	    game.roll(3);
+	    rollMany(17, 0);
+	    assertThat(game.getScore()).isEqualTo(16);
+	}
+	
+	
 }
