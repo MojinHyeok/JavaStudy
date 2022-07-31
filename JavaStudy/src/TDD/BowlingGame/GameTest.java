@@ -46,6 +46,9 @@ public class GameTest {
 		game.roll(5);
 		game.roll(5);
 	}
+	private void rollStrike() {
+		game.roll(10);
+	}
 	
 	@Test 
 	public void gutterGame() {
@@ -75,10 +78,15 @@ public class GameTest {
 	    rollMany(16, 0);
 	    assertThat(game.getScore()).isEqualTo(26);
 	}
-
-	private void rollStrike() {
-		game.roll(10);
+	
+	@Test
+	public void perfectGame() {
+	    rollMany(10,10);
+	    game.roll(10);
+	    game.roll(10);
+	    assertThat(game.getScore()).isEqualTo(300);
 	}
+
 	
 	
 }

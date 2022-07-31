@@ -19,16 +19,23 @@ public class Game {
 				firstRollInFrame+=2;
 			}
 			else if(isStrike(firstRollInFrame)) {
-				score += 10 + rolls[firstRollInFrame+1]+rolls[firstRollInFrame+2];
+				score += 10 + nextBallsForStrike(firstRollInFrame);
 				firstRollInFrame+=1;
 			}
 			else{
-				score += rolls[firstRollInFrame] + rolls[firstRollInFrame + 1];
+				score += nextBallsForFrame(firstRollInFrame);
 				firstRollInFrame +=2;
 			}
 		}
 		
 		return score;
+	}
+
+	private int nextBallsForStrike(int firstRollInFrame) {
+		return  rolls[firstRollInFrame+1] + rolls[firstRollInFrame+2];
+	}
+	private int nextBallsForFrame(int firstRollInFrame) {
+		return rolls[firstRollInFrame] + rolls[firstRollInFrame + 1];
 	}
 
 	private int nextBallForSpare(int firstRollInFrame) {
@@ -40,7 +47,7 @@ public class Game {
 	}
 
 	private boolean isSpare(int firstRollInFrame) {
-		return rolls[firstRollInFrame] + rolls[firstRollInFrame + 1] == 10;
+		return nextBallsForFrame(firstRollInFrame) == 10;
 	}
 
 }
