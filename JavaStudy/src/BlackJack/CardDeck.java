@@ -1,6 +1,6 @@
 package BlackJack;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class CardDeck {
@@ -17,7 +17,7 @@ public class CardDeck {
 	
 	
 	private List<Card> generateCards(){
-		List<Card> cards = new ArrayList<>();
+		List<Card> cards = new LinkedList<>();
 		for(String pattern : PATTERNS) {
 			for(int i=0;i<CARD_COUNT;i++) {
 				String denomination = this.numberToDenomination(i);
@@ -27,6 +27,19 @@ public class CardDeck {
 		}
 		return cards;
 	}
+	
+	public Card draw() {
+		Card selectedCard = this.getRandomCard();
+		cards.remove(selectedCard);
+		return selectedCard;
+	}
+
+	private Card getRandomCard() {
+		int size = cards.size();
+		int select = (int)Math.random()*size;
+		return cards.get(select);
+	}
+
 
 	private String numberToDenomination(int number) {
 		if (number == 1) {
