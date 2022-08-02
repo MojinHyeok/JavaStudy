@@ -8,6 +8,11 @@ public class Card {
 	//끝 수 (A,2~10,j,k,Q)를 의미
 	private String denomination;
 
+	public Card (String pattern, String denomination) {
+		this.pattern = pattern;
+		this.denomination = denomination;
+	}
+	
 	public String getPattern() {
 		return pattern;
 	}
