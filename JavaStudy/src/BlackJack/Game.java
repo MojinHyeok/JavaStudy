@@ -1,65 +1,87 @@
 package BlackJack;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Game {
-	
-	private static final int INIT_RECEIVE_CARD_COUNT = 2;
-	public void play(){
-        System.out.println("========= Blackjack =========");
-        Scanner sc = new Scanner(System.in);
-        		
-        Dealer dealer = new Dealer();
-        Gamer gamer = new Gamer();
-        Rule rule = new Rule();
-        CardDeck cardDeck = new CardDeck();
-        
-        this.initPhase(cardDeck, gamer, dealer);
-        this.playPhase(sc,cardDeck, gamer,dealer);
-    }
 
-	private void playPhase(Scanner sc, CardDeck cardDeck, Gamer gamer,Dealer dealer) {
-		String gameInput,dealerInput;
-		boolean isGamerTurn = false, isDealerTurn = false;
-		while(true) {
-			System.out.println("카드를 뽑겠습니까? 종료를 원하신다면 0을 입력해주세요");
-			gameInput = sc.nextLine();
-			
-			if("0".equals(gameInput)) {
-				
-				isGamerTurn = true;
-				break;
-			}else {
-				Card card = cardDeck.draw();
-				gamer.receiveCard(card);
-				
-			}
-			System.out.println("카드를 뽑겠습니까? 종료를 원하신다면 0을 입력해주세요");
-			
-			dealerInput = sc.nextLine();
-			if("0".equals(dealerInput)) {
-				isDealerTurn =true;
-			}else {
-				Card card = cardDeck.draw();
-				dealer.receiveCard(card);
-			}
-			if(isGamerTurn&& isDealerTurn) {
-				break;
-			}
-			Card card = cardDeck.draw();
-			gamer.receiveCard(card);
-			
-		}
+	private static final int INIT_RECEIVE_CARD_COUNT = 2;
+
+	private static final String STOP_RECEIVE_CARD = "0";
+
+	public void play() {
+		System.out.println("========= Blackjack =========");
+		Scanner sc = new Scanner(System.in);
+
+		Rule rule = new Rule();
+		CardDeck cardDeck = new CardDeck();
+
+		List<Player> players = Arrays.asList(new Gamer("사용자1"), new Dealer());
+        List<Player> initAfterPlayers = this.initPhase(cardDeck, players);
+        List<Player> playingAfterPlayers = this.playPhase(sc, cardDeck, initAfterPlayers);
+        
+        Player winner = rule.getWinner(playingAfterPlayers);
+        System.out.println("승자는 : "+winner.getName());
 		
 	}
-	private void initPhase(CardDeck cardDeck, Gamer gamer, Dealer dealer){
-        System.out.println("처음 2장의 카드를 각자 뽑겠습니다.");
-        for(int i = 0; i< INIT_RECEIVE_CARD_COUNT; i++) {
-            Card card = cardDeck.draw();
-            gamer.receiveCard(card);
 
-            Card card2 = cardDeck.draw();
-            dealer.receiveCard(card2);
+	private List<Player> playPhase(Scanner sc, CardDeck cardDeck, List<Player> players) {
+		 List<Player> cardReceivedPlayers;
+		while (true) {
+			cardReceivedPlayers = this.receiveCardAllPlayers(sc, cardDeck, players);
+
+			if (isAllPlayerTurnOff(cardReceivedPlayers)) {
+				break;
+			}
+
+		}
+		return cardReceivedPlayers;
+
+	}
+
+	private boolean isAllPlayerTurnOff(List<Player> players) {
+		for(Player player : players) {
+            if(player.isTurn()) {
+                return false;
+            }
         }
-    }
+
+        return true;
+	}
+
+	private List<Player> receiveCardAllPlayers(Scanner sc, CardDeck cardDeck, List<Player> players) {
+
+		for (Player player : players) {
+			System.out.println(player.getName()+"님 차례입니다.");
+			System.out.println(player.getName()+"님의 Point는 "+player.getPointSum()+"입니다");
+			if (this.isReceiveCard(sc)) {
+				Card card = cardDeck.draw();
+				player.receiveCard(card);
+				player.turnOn();
+			} else {
+				player.turnOff();
+			}
+		}
+
+		return players;
+	}
+
+	private boolean isReceiveCard(Scanner sc) {
+		System.out.println("카드를 뽑겠습니까? 종료를 원하시면 0을 입력하세요.");
+		return !STOP_RECEIVE_CARD.equals(sc.nextLine());
+	}
+
+	private List<Player> initPhase(CardDeck cardDeck, List<Player> players) {
+		System.out.println("처음 2장의 카드를 각자 뽑겠습니다.");
+		for (int i = 0; i < INIT_RECEIVE_CARD_COUNT; i++) {
+			for (Player player : players) {
+
+				Card card = cardDeck.draw();
+				player.receiveCard(card);
+			}
+
+		}
+		return players;
+	}
 }

@@ -3,12 +3,15 @@ package BlackJack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dealer {
+public class Dealer implements Player{
 	
 	private List<Card> cards;
 	
+	private boolean turn;
 	// 기준이되는 점수 16점
 	private static final int CAN_RECEIVE_POINT = 16;
+	
+	private static final String NAME = "딜러";
 	
 	public Dealer() {
 		cards = new ArrayList<>();
@@ -28,13 +31,7 @@ public class Dealer {
 		return this.getPointSum() <= CAN_RECEIVE_POINT;
 	}
 	
-	private int getPointSum() {
-		int sum = 0;
-		for(Card card : cards) {
-			sum+= card.getPoint();
-		}
-		return sum;
-	}
+	
 	
 	public void showCards() {
 		StringBuilder sb = new StringBuilder();
@@ -50,6 +47,38 @@ public class Dealer {
 	public List<Card> openCards(){
 		return this.cards;
 	}
-	
+
+	@Override
+    public void turnOff() {
+        this.setTurn(false);
+    }
+
+    @Override
+    public void turnOn() {
+        this.setTurn(true);
+    }
+
+    @Override
+    public boolean isTurn() {
+        return this.turn;
+    }
+
+    private void setTurn(boolean turn) {
+        this.turn = turn;
+    }
+
+	@Override
+	public String getName() {
+		return NAME;
+	}
+
+	@Override
+	public int getPointSum() {
+		int sum = 0;
+		for(Card card : cards) {
+			sum+= card.getPoint();
+		}
+		return sum;
+	}
 
 }
